@@ -1,5 +1,6 @@
 import express, { Router } from 'express';
 import serverless from 'serverless-http';
+import parseWb from './parseWb';
 
 import cors from 'cors';
 
@@ -12,7 +13,10 @@ const api = express();
 api.use(cors(corsOptions));
 
 const router = Router();
-router.get('/hello', (req, res) => res.send('Hello World!'));
+router.get('/hello', async (req, res) => {
+    let html = await parseWb('Frosch', 'min')
+    res.send(html);
+});
 
 api.use('/api/', router);
 
