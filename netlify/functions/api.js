@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 import serverless from 'serverless-http';
-import parseWb from './parseWb';
+import parseWb from '../../src/parseWb';
 
 import cors from 'cors';
 

@@ -9,11 +9,15 @@ export default async function findProductWithMinOrMaxPriceWb(productName, mode =
       : (url = `https://www.wildberries.ru/catalog/0/search.aspx?&sort=${sortMethods[1]}&search=${productName}`) &&
         (mode = "max");
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({headless: "new"});
     const page = await browser.newPage();
     await page.goto(url);
 
     const html = await page.content();
-    // console.log(html);
+    console.log(html);
+
+    await browser.close();
     return html;
 }
+
+// findProductWithMinOrMaxPriceWb('Frosch', 'min');
