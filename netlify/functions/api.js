@@ -4,15 +4,15 @@ import serverless from 'serverless-http';
 import cors from 'cors';
 
 const corsOptions = {
-    origin: false,
+    origin: '*',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
 const api = express();
-api.use(cors);
+api.use(cors(corsOptions));
 
 const router = Router();
-router.get('/hello', cors(corsOptions), (req, res) => res.send('Hello World!'));
+router.get('/hello', (req, res) => res.send('Hello World!'));
 
 api.use('/api/', router);
 
